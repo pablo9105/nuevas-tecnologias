@@ -1,11 +1,26 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="jumbotron">
-    <h1 class="display-4">Hello, world!</h1>
-    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
-        featured content or information.</p>
-    <hr class="my-4">
-    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-</div>
+<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Task</th>
+      <th scope="col">Date</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+  {% for task in tasks %}
+  <tr>
+      
+      <td>{{task.0}}</td>
+      <td>{{task.1}}</td>
+      <td>{{task.2}}</td>
+      <td> <a href=""  class="btn btn-warning" title="eliminar"><i class="fas fa-edit" title="actualizar"></i> </a> 
+         <a href="" onclick= "return confirm('Esta seguro de Eliminar este registro?');" class="btn btn-danger" title="eliminar"><i class="fas fa-trash-alt"></i> </a> </td>
+    </tr>
+  {% endfor %}
+  
+  </tbody>
+</table>
 {% endblock %}
