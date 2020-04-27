@@ -1,0 +1,347 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+ 
+    <div class="row principal">
+        <div class="col md-12">
+ 
+            <div class="jumbotron p-3">
+ 
+                <h2>Agenda <b>Citas </b>  <button type="button"  class="btn btn-success float-right"
+                data-toggle="modal" data-target="#mymodal">Agendar Nueva Cita</button> </h2>
+ 
+ 
+                {% with messages = get_flashed_messages(with_categories=true) %}
+ 
+                {% if messages %}
+ 
+                {% for category, message in messages %}
+ 
+                <div class="alert {{category}} alert-dismissable" role="alert">
+ 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+ 
+                        <span aria-hidden="true">x</span>
+ 
+                    </button>
+ 
+ 
+                {{message}}
+ 
+ 
+                </div> <!-- TODO: div alert {{category}} alert-dismissable -->
+ 
+ 
+                {% endfor %}
+ 
+                {% endif %}
+                {% endwith %}
+ 
+ 
+                <table class="table table-hover table-dark">
+ 
+                    <tr>
+ 
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Nro_documento</th>
+                        <th>Fecha_Nac</th>
+                        <th>Ciudad</th>
+                        <th>Barrio</th>
+                        <th>Celular</th>
+ 
+                    </tr>
+ 
+ 
+                   {% for row in tasks %}
+                    <tr>
+                        <td>{{row.0}}</td>
+                        <td>{{row.1}}</td>
+                        <td>{{row.2}}</td>
+                        <td>{{row.3}}</td>
+                        <td>{{row.4}}</td>
+                        <td>{{row.5}}</td>
+                        <td>{{row.6}}</td>
+                        <td>{{row.7}}</td>
+ 
+                        <td>
+                            <a href="" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}" title="Actualizar"><i class="fas fa-edit" ></i> </a>
+                            <a href="/delete/{{row.0}}" class="btn btn-danger btn-xs" onclick="return confirm('SEGURO QUE QUIERE ELIMINAR ESTE REGISTRO ! ?')" title="eliminar"><i class="fas fa-trash-alt"></i></a>
+ 
+ 
+                        </td>
+ 
+                    </tr>
+ 
+ 
+                  <!--  TODO: Modal Editar-->
+
+<div id="modaledit{{row.0}}" class="modal fade" role="dialog">
+   <div class="modal-dialog">
+ 
+ 
+      <div class="modal-content">
+ 
+ 
+         <div class="modal-header">
+ 
+ 
+            <h4 class="modal-title">Actualizar Information</h4>
+ 
+ 
+         </div> <!-- TODO: div modal-header -->
+ 
+ 
+         <div class="modal-body">
+ 
+ 
+            <form action="{{url_for('update')}}" method="POST">
+ 
+ 
+               <div class="form-group">
+                  <label>Nombre:</label>
+                   <input type="hidden"  name="id" value="{{row.0}}">
+                   <input type="text" class="form-control" name="nombre" value="{{row.1}}">
+               </div> 
+ 
+ 
+
+               <div class="form-group">
+                  <label>Apellido:</label>
+                  <input type="text" class="form-control" name="apellido" value="{{row.2}}">
+               </div>
+ 
+
+                  
+               <div class="form-group">
+                  <label>Nro_Documento:</label>
+                  <input type="number" class="form-control" name="nro_documento" value="{{row.3}}">
+               </div>
+ 
+ 
+                  
+               <div class="form-group">
+                  <label>Fecha_Nac:</label>
+                  <input type="date" class="form-control" name="fecha_nac" value="{{row.4}}">
+               </div>
+ 
+ 
+ 
+               <div class="form-group">
+                  <label>Ciudad:</label>
+                  <input type="text" class="form-control" name="ciudad" value="{{row.5}}">
+               </div>
+ 
+ 
+ 
+               <div class="form-group">
+                  <label>Barrio:</label>
+                  <input type="text" class="form-control" name="barrio" value="{{row.6}}">
+               </div>
+ 
+ 
+ 
+               <div class="form-group">
+                  <label>Celular:</label>
+                  <input type="number" class="form-control num" name="celular" value="{{row.7}}" maxlength="10">
+               </div>
+ 
+ 
+ 
+               <div class="form-group">
+                  <button class="btn btn-primary" onclick="" type="submit">Actualizar</button>
+               </div>
+ 
+          </form>
+ 
+
+         </div> <!-- TODO: div modal-body -->
+ 
+ 
+ 
+         <div class="modal-footer">
+ 
+ 
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+ 
+ 
+         </div> <!-- TODO: div modal-footer -->
+ 
+ 
+      </div> <!-- TODO: div modal-content -->
+ 
+ 
+   </div> <!-- TODO: div modal-dialog -->
+ 
+</div> <!-- FIXME: div modal (fin modal para editar)  -->
+ 
+ 
+ 
+ 
+ 
+ 
+                    {% endfor %}
+ 
+ 
+                </table>
+ 
+ 
+            </div> <!-- FIXME: div jumbotron p-3  -->
+
+ <!-- ///////////////////////////////////////////////////////////////////////////////////////////////  -->
+ 
+ 
+                  <!--  TODO: Modal insertar-->
+ 
+ 
+<div id="mymodal" class="modal fade" role="dialog">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+ 
+            <h4 class="modal-title">Agendar Cita</h4>
+         </div> <!-- TODO: div modal-header -->
+
+         <div class="modal-body">
+ 
+            <form action="{{url_for('insert')}}" method="POST">
+ 
+ 
+               <div class="form-group">
+                  <label>Nombre:</label>
+                  <input type="text" class="form-control" name="nombre" required="1">
+               </div>
+ 
+ 
+ 
+               <div class="form-group">
+                  <label>Apellido:</label>
+                  <input type="text" class="form-control" name="apellido" required="1">
+               </div>
+ 
+ 
+  
+ 
+               <div class="form-group">
+                  <label>Nro_Documento:</label>
+                  <input type="number" class="form-control" name="nro_documento" required="1">
+               </div>
+ 
+ 
+ 
+ 
+               <div class="form-group">
+                  <label>Fecha_Nac:</label>
+                  <input type="date" class="form-control" name="fecha_nac" required="1">
+               </div>
+ 
+ 
+ 
+ 
+               <div class="form-group">
+                  <label>Ciudad:</label>
+                  <input type="text" class="form-control" name="ciudad" required="1">
+               </div>
+
+ 
+ 
+ 
+ 
+               <div class="form-group">
+                  <label>Barrio:</label>
+                  <input type="text" class="form-control" name="barrio" required="1">
+               </div>
+
+ 
+ 
+ 
+               <div class="form-group">
+                  <label>Celular:</label>
+                  <input type="number" class="form-control num" name="celular" required  >
+               </div>
+ 
+
+ 
+ 
+               <div class="form-group">
+                  <button class="btn btn-primary" type="submit">Agendar</button>
+               </div>
+ 
+ 
+            </form>
+ 
+
+         </div> <!-- TODO: div modal-body -->
+ 
+ 
+ 
+         <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+         </div>
+         
+         
+         
+ 
+ 
+ 
+ 
+ 
+ 
+        </div> <!-- TODO: div modal-content -->
+ 
+ 
+      </div> <!-- TODO: div modal-dialog -->
+ 
+ 
+      </div> <!-- FIXME: div modal (fin modal para insertar)-->
+ 
+ 
+ 
+ 
+ 
+        </div> <!-- FIXME: div col md-12  -->
+ 
+    </div> <!-- FIXME: div row principal  -->
+ 
+ 
+
+ 
+ 
+{% endblock %}
+ 
+
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
