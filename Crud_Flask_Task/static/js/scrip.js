@@ -1,6 +1,12 @@
 
-$(function(){
+$(document).ready(function(){
 'use strict';
+// alert('hola');
+// setTimeout(function() {
+//   $("div.jumbotron").fadeOut(1500);
+// },2000);
+
+// $("div#p-3").fadeIn("slow").show();
 
 
  if ($('.modal')){

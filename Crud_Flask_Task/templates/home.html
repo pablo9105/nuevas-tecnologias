@@ -2,13 +2,14 @@
 
 {% block body %}
  
-    <div class="row principal">
+    <div  class="row principal">
         <div class="col md-12">
  
-            <div class="jumbotron p-3">
+            <div  class="jumbotron p-3">
  
-                <h2>Agenda <b>Citas </b>  <button type="button"  class="btn btn-success float-right"
+                <h2>Plataforma Citas<button type="button"  class="btn btn-success float-right"
                 data-toggle="modal" data-target="#mymodal">Agendar Nueva Cita</button> </h2>
+                
  
  
                 {% with messages = get_flashed_messages(with_categories=true) %}
@@ -37,19 +38,20 @@
                 {% endif %}
                 {% endwith %}
  
- 
-                <table class="table table-hover table-dark">
+                  <!-- class= "table table-hover table-dark" -->
+                <table border="2" class="text-center">
  
                     <tr>
  
-                        <th>Id</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Nro_documento</th>
-                        <th>Fecha_Nac</th>
-                        <th>Ciudad</th>
-                        <th>Barrio</th>
-                        <th>Celular</th>
+                        <th style="color:yellow; background: black">Id</th>
+                        <th style="color:yellow; background: black">Nombre</th>
+                        <th style="color:yellow; background: black">Apellido</th>
+                        <th style="color:yellow; background: black">Nro_documento</th>
+                        <th style="color:yellow; background: black">Fecha_Nac</th>
+                        <th style="color:yellow; background: black">Ciudad</th>
+                        <th style="color:yellow; background: black">Barrio</th>
+                        <th style="color:yellow; background: black">Celular</th>
+                        <th style="color:yellow; background: black">Opciones</th>
  
                     </tr>
  
@@ -116,7 +118,7 @@
                   
                <div class="form-group">
                   <label>Nro_Documento:</label>
-                  <input type="number" class="form-control" name="nro_documento" value="{{row.3}}">
+                  <input type="number" class="form-control" name="nro_documento"  value="{{row.3}}">
                </div>
  
  
@@ -258,7 +260,7 @@
  
                <div class="form-group">
                   <label>Celular:</label>
-                  <input type="number" class="form-control num" name="celular" required  >
+                  <input type="number" class="form-control num" name="celular" placeholder="max 10 digitos!!" required  >
                </div>
  
 
