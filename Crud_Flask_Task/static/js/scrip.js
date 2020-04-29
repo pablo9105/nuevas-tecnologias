@@ -17,11 +17,6 @@ $(document).ready(function(){
       }
     });
 
-    // var input=  document.querySelector('.num');
-    // input.addEventListener('input',function(){
-    //   if (this.value.length > 10) 
-    //      this.value = this.value.slice(0,10); 
-    // })
 
  }
 

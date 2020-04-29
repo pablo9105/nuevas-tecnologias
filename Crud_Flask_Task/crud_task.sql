@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-04-2020 a las 23:21:17
+-- Tiempo de generación: 29-04-2020 a las 06:26:31
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.3
 
@@ -32,11 +32,11 @@ CREATE TABLE `cita_usr` (
   `Id` int(11) NOT NULL,
   `Nombre` varchar(20) COLLATE utf8_bin NOT NULL,
   `Apellido` varchar(20) COLLATE utf8_bin NOT NULL,
-  `Nro_Documento` int(30) NOT NULL,
+  `Nro_Documento` bigint(11) NOT NULL,
   `Fecha_Nac` date NOT NULL,
   `Ciudad` varchar(20) COLLATE utf8_bin NOT NULL,
   `Barrio` varchar(20) COLLATE utf8_bin NOT NULL,
-  `Celular` int(30) NOT NULL
+  `Celular` bigint(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -44,10 +44,9 @@ CREATE TABLE `cita_usr` (
 --
 
 INSERT INTO `cita_usr` (`Id`, `Nombre`, `Apellido`, `Nro_Documento`, `Fecha_Nac`, `Ciudad`, `Barrio`, `Celular`) VALUES
-(21, 'pedro', 'dsfm', 152152152, '1220-02-15', 'dfsdfasd', 'dfadfa', 1416513216),
-(22, 'pedro', 'gomez', 15215211, '2222-02-12', 'sdfkpkñ,', 'dsfsdf', 1000),
-(23, 'vbnvx', 'hadfhadfa', 3665313, '1311-03-31', 'fdgsdds', 'fdhsdhds', 2147483647),
-(25, 'sdada', 'dsagadgfa', 2154151, '2000-05-05', 'sdfdaga', 'adgaga', 1521523);
+(37, 'nfgf', 'rgsdf', 33333333333333333, '2222-12-12', 'gblsf', 'fs541', 2222222222),
+(38, 'dfgsf', 'fghsgf', 1335250048, '2220-02-02', 'sdfdg', 'fdgsdg', 3128254722),
+(40, 'gffs', 'ghsfg', 161611, '2000-02-12', 'da', 'aga', 3333333333);
 
 --
 -- Índices para tablas volcadas
@@ -67,7 +66,7 @@ ALTER TABLE `cita_usr`
 -- AUTO_INCREMENT de la tabla `cita_usr`
 --
 ALTER TABLE `cita_usr`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
